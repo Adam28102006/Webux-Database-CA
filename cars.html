@@ -1,1 +1,69 @@
-Test
+<h1>Cars</h1>
+<select id="manufacturer-select"></select>
+<input type="text" id="car-model" placeholder="Car Model">
+<input type="number" id="car-price" placeholder="Price">
+<button onclick="addCar()">Add Car</button>
+<ul id="cars-list"></ul>
+
+<script>
+async function fetchManufacturersForDropdown() {
+    let { data } = await supabase.from('manufacturers').select('*');
+    const select = document.getElementById('manufacturer-select');
+    select.innerHTML = '';
+    data.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m.Manufacturer_ID;
+        opt.textContent = m.Manufacturer_name;
+        select.appendChild(opt);
+    });
+}
+
+async function fetchCars() {
+    let { data, error } = await supabase.from('cars').select('Car_ID, Model, Price, Manufacturer_ID');
+    if (error) return console.error(error);
+    const list = document.getElementById('cars-list');
+    list.innerHTML = '';
+    data.forEach(c => {
+        const li = document.createElement('li');
+        li.textContent = `ID: ${c.Car_ID}, Model: ${c.Model}, Price: $${c.Price}, Manufacturer_ID: ${c.Manufacturer_ID} `;
+
+        const updateBtn = document.createElement('button');
+        updateBtn.textContent = 'Update';
+        updateBtn.onclick = () => updateCar(c.Car_ID);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = () => deleteCar(c.Car_ID);
+
+        li.appendChild(updateBtn);
+        li.appendChild(deleteBtn);
+        list.appendChild(li);
+    });
+}
+
+async function addCar() {
+    const model = document.getElementById('car-model').value;
+    const price = parseFloat(document.getElementById('car-price').value);
+    const manufacturerID = parseInt(document.getElementById('manufacturer-select').value);
+    if (!model || !price) return alert('Fill all fields');
+    await supabase.from('cars').insert([{ Model: model, Price: price, Manufacturer_ID: manufacturerID }]);
+    fetchCars();
+}
+
+async function updateCar(id) {
+    const newModel = prompt('Enter new model:');
+    const newPrice = parseFloat(prompt('Enter new price:'));
+    if (!newModel || isNaN(newPrice)) return;
+    await supabase.from('cars').update({ Model: newModel, Price: newPrice }).eq('Car_ID', id);
+    fetchCars();
+}
+
+async function deleteCar(id) {
+    await supabase.from('cars').delete().eq('Car_ID', id);
+    fetchCars();
+}
+
+
+fetchManufacturersForDropdown();
+fetchCars();
+</script>
