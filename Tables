@@ -1,0 +1,32 @@
+
+DROP TABLE  if exists manufacturers cascade;
+DROP TABLE  if exists cars cascade;
+DROP TABLE  if exists parts cascade;
+DROP TABLE  if exists car_parts cascade;
+
+
+CREATE TABLE manufacturers (
+    Manufacturer_ID serial PRIMARY KEY,
+    Manufacturer_name Varchar(30) Not null
+);
+
+CREATE TABLE cars (
+    Car_ID serial PRIMARY KEY,
+    Manufacturer_ID int Not null references manufacturers(Manufacturer_ID),
+    Price decimal(10,2) Not null
+);
+
+CREATE TABLE parts (
+    Part_ID SERIAL PRIMARY KEY,
+    Part_name VARCHAR(50) Not null,
+    Price DECIMAL(10,2) Not null
+);
+
+CREATE TABLE car_parts (
+    Car_ID INT Not null REFERENCES cars(Car_ID),
+    Part_ID INT Not null REFERENCES parts(Part_ID),
+    Quantity INT DEFAULT 1,
+    PRIMARY KEY (Car_ID, Part_ID)
+);
+
+Basic table setup, all works.
