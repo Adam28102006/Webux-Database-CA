@@ -1,21 +1,37 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-input, select {
-    margin: 5px;
-    padding: 5px;
-}
-button {
-    margin-left: 5px;
-}
-ul {
-    list-style: none;
-    padding: 0;
-}
-li {
-    margin: 5px 0;
-}
-nav a {
-    margin-right: 10px;
-}
+style.css { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }  
+
+.navbar { display: flex; justify-content: space-between; align-items: center; background-color: #0b0f8a; padding: 15px 40px; } 
+
+.nav-links { list-style: none; display: flex; gap: 20px; } 
+
+.nav-links a { text-decoration: none; color: white; padding: 6px 12px; } 
+
+.nav-links .active { background-color: orange; border-radius: 4px; } 
+
+/ .intro { padding: 40px; } 
+
+.flex-container { display: flex; gap: 40px; align-items: center; } 
+
+.flex-container img { width: 300px; border-radius: 6px; } 
+
+.flex-text h2 { color: darkgreen; margin-bottom: 15px; } 
+
+.flex-text p { line-height: 1.6; } 
+
+.product-sections { display: flex; justify-content: space-around; padding: 40px; gap: 20px; } 
+
+.product-card { background: white; padding: 20px; width: 30%; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); } 
+
+.product-card h3 { color: darkgreen; margin-bottom: 10px; } 
+
+.product-card img { width: 80px; margin: 10px 0; } 
+
+.testimonial-sections { background-color: #7ec8e3; display: flex; justify-content: space-around; padding: 40px; } 
+
+.testimonial { background: white; padding: 20px; width: 30%; text-align: center; border-radius: 6px; } 
+
+.stars { color: gold; margin-bottom: 10px; } 
+
+.testimonial h4 { color: darkgreen; margin-bottom: 10px; } 
+
+ footer { background-color: #2fe0e0; text-align: center; padding: 15px; margin-top: 20px; } 
