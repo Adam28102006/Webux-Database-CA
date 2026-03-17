@@ -19,7 +19,7 @@ const client = supabase.createClient('https://jeuedjgfkliemobkvvjb.supabase.co'
 </script>
 <script>
 async function fetchManufacturersForDropdown() {
-    let { data } = await supabase.from('manufacturers').select('*');
+    let { data } = await client.from('manufacturers').select('*');
     const select = document.getElementById('manufacturer-select');
     select.innerHTML = '';
     data.forEach(m => {
@@ -31,7 +31,7 @@ async function fetchManufacturersForDropdown() {
 }
 
 async function fetchCars() {
-    let { data, error } = await supabase.from('cars').select('Car_ID, Model, Price, Manufacturer_ID');
+    let { data, error } = await client.from('cars').select('Car_ID, Model, Price, Manufacturer_ID');
     if (error) return console.error(error);
     const list = document.getElementById('cars-list');
     list.innerHTML = '';
@@ -58,7 +58,7 @@ async function addCar() {
     const price = parseFloat(document.getElementById('car-price').value);
     const manufacturerID = parseInt(document.getElementById('manufacturer-select').value);
     if (!model || !price) return alert('Fill all fields');
-    await supabase.from('cars').insert([{ Model: model, Price: price, Manufacturer_ID: manufacturerID }]);
+    await client.from('cars').insert([{ Model: model, Price: price, Manufacturer_ID: manufacturerID }]);
     fetchCars();
 }
 
@@ -66,12 +66,12 @@ async function updateCar(id) {
     const newModel = prompt('Enter new model:');
     const newPrice = parseFloat(prompt('Enter new price:'));
     if (!newModel || isNaN(newPrice)) return;
-    await supabase.from('cars').update({ Model: newModel, Price: newPrice }).eq('Car_ID', id);
+    await client.from('cars').update({ Model: newModel, Price: newPrice }).eq('Car_ID', id);
     fetchCars();
 }
 
 async function deleteCar(id) {
-    await supabase.from('cars').delete().eq('Car_ID', id);
+    await client.from('cars').delete().eq('Car_ID', id);
     fetchCars();
 }
 
