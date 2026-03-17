@@ -31,7 +31,7 @@ async function fetchManufacturersForDropdown() {
 }
 
 async function fetchCars() {
-    let { data, error } = await client.from('cars').select('Car_ID, Model, Price, Manufacturer_ID');
+    let { data, error } = await client.from('cars').select('Car_ID, Manufacturer_ID, Price, Model');
     if (error) return console.error(error);
     const list = document.getElementById('cars-list');
     list.innerHTML = '';
