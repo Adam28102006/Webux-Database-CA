@@ -1,4 +1,4 @@
 
 const supabaseUrl = https://jeuedjgfkliemobkvvjb.supabase.co';
 const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpldWVkamdma2xpZW1vYmt2dmpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NTQyODEsImV4cCI6MjA4NzQzMDI4MX0.YHt_oZHRG06wI2_w7COLKdi3_DJCJOECMrv80hdDJnk;
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const supabase = supabase.createClient(https://jeuedjgfkliemobkvvjb.supabase.co', eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpldWVkamdma2xpZW1vYmt2dmpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NTQyODEsImV4cCI6MjA4NzQzMDI4MX0.YHt_oZHRG06wI2_w7COLKdi3_DJCJOECMrv80hdDJnk);
