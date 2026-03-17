@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Parts</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Your Car Parts!</h1>
+    <p>Manage your Car Parts</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="parts.html" class="active">Parts</a></li>
+        <li><a href="addcar.html">Add Car</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h2>Car Parts Inventory</h2>
+
+    <!-- SEARCH BAR -->
+    <input type="text" id="searchInput" placeholder="Search for parts...">
+
+    <!-- PARTS TABLE -->
+    <table id="partsTable">
+        <tr>
+            <th>Part Name</th>
+            <th>Category</th>
+            <th>Price (€)</th>
+            <th>Stock</th>
+        </tr>
+
+        <tr>
+            <td>Brake Pads</td>
+            <td>Brakes</td>
+            <td>50</td>
+            <td>25</td>
+        </tr>
+
+        <tr>
+            <td>Oil Filter</td>
+            <td>Engine</td>
+            <td>15</td>
+            <td>40</td>
+        </tr>
+
+        <tr>
+            <td>Air Filter</td>
+            <td>Engine</td>
+            <td>20</td>
+            <td>30</td>
+        </tr>
+
+        <tr>
+            <td>Spark Plug</td>
+            <td>Ignition</td>
+            <td>10</td>
+            <td>60</td>
+        </tr>
+
+        <tr>
+            <td>Car Battery</td>
+            <td>Electrical</td>
+            <td>120</td>
+            <td>10</td>
+        </tr>
+
+        <tr>
+            <td>Headlight Bulb</td>
+            <td>Lighting</td>
+            <td>25</td>
+            <td>35</td>
+        </tr>
+
+    </table>
+</section>
+
+<footer>
+    <p>&copy; 2026 Car Inventory System</p>
+</footer>
+
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    let input = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#partsTable tr:not(:first-child)");
+
+    rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(input)
+            ? ""
+            : "none";
+    });
+});
+</script>
+</body>
+</html>
