@@ -6,16 +6,16 @@
 <ul id="cars-list"></ul>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0-beta.10"></script>
 <script>
-const supabaseUrl = https://jeuedjgfkliemobkvvjb.supabase.co';
-const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpldWVkamdma2xpZW1vYmt2dmpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NTQyODEsImV4cCI6MjA4NzQzMDI4MX0.YHt_oZHRG06wI2_w7COLKdi3_DJCJOECMrv80hdDJnk;
+const supabaseUrl = 'https://jeuedjgfkliemobkvvjb.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpldWVkamdma2xpZW1vYmt2dmpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NTQyODEsImV4cCI6MjA4NzQzMDI4MX0.YHt_oZHRG06wI2_w7COLKdi3_DJCJOECMrv80hdDJnk';
 
-  const client = createClient('https://jeuedjgfkliemobkvvjb.supabase.co'
+const client = createClient('https://jeuedjgfkliemobkvvjb.supabase.co'
                                              ,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpldWVkamdma2xpZW1vYmt2dmpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NTQyODEsImV4cCI6MjA4NzQzMDI4MX0.YHt_oZHRG06wI2_w7COLKdi3_DJCJOECMrv80hdDJnk'
                                              );;
   window.onload = () => {
       fetchManufacturersForDropdown();
       fetchCars();
-
+      };
 </script>
 <script>
 async function fetchManufacturersForDropdown() {
@@ -75,6 +75,6 @@ async function deleteCar(id) {
     fetchCars();
 }
 
-  };
+  
 
 </script>
