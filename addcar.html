@@ -1,1 +1,118 @@
-New file 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Car</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<header>
+    <h1>Car Inventory</h1>
+    <p>Add a new car to your inventory</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="addcar.html" class="active">Add Car</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2>Add New Car</h2>
+
+    <form id="car-form">
+        <label for="manufacturer">Manufacturer</label>
+        <select id="manufacturer">
+            <option value="">Select Manufacturer</option>
+            <option value="Audi AG">Audi AG</option>
+            <option value="The BMW Group">The BMW Group</option>
+            <option value="Ford Motor Company">Ford Motor Company</option>
+            <option value="Hyundai Motor Group">Hyundai Motor Group</option>
+            <option value="Jaguar Land Rover">Jaguar Land Rover</option>
+        </select>
+
+        <label for="model">Model</label>
+        <input type="text" id="model" placeholder="e.g. Corolla">
+
+        <label for="price">Price (€)</label>
+        <input type="number" id="price" placeholder="e.g. 15000">
+
+        <label for="year">Year</label>
+        <input type="number" id="year" placeholder="e.g. 2022">
+
+        <button type="submit">Add Car</button>
+    </form>
+
+    <p id="message">No car added yet.</p>
+</main>
+
+<footer>
+    <p>&copy; 2026 Car Inventory System</p>
+</footer>
+
+<script>
+
+const supabaseUrl = 'https://gnhiwqpgpeoolmkkzrwo.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImduaGl3cXBncGVvb2xta2t6cndvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1Mzg4MTgsImV4cCI6MjA4NzExNDgxOH0.xYoMidYCqTVYbrOWCtzP24fnUQuDMy4G-juWhjWmwfQ';
+const client = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+async function addCar() {
+    console.log("AddCar function triggered");
+
+    const manufacturer = document.getElementById('manufacturer').value;
+    const model = document.getElementById('model').value;
+    const price = document.getElementById('price').value;
+    const year = document.getElementById('year').value;
+
+    if (!manufacturer || !model || !price || !year) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    const { data: mData, error: mError } = await client
+        .from('manufacturers')
+        .select('manufacturer_id')
+        .eq('manufacturer_name', manufacturer);
+
+    if (mError || !mData || mData.length === 0) {
+        alert("Manufacturer not found in database");
+        console.error(mError);
+        return;
+    }
+
+    const manufacturer_id = mData[0].manufacturer_id;
+
+    const { data, error } = await client
+        .from('cars')
+        .insert([{
+            model: model,
+            price: parseInt(price),
+            year: parseInt(year),
+            manufacturer_id: manufacturer_id
+        }])
+        .select();
+
+    if (error) {
+        console.error(error);
+        alert("Failed to add car: " + error.message);
+    } else {
+        document.getElementById('message').innerText =
+            `Added: ${manufacturer} ${model} (€${price})`;
+        document.getElementById('car-form').reset();
+    }
+}
+
+document.getElementById('car-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    addCar();
+});
+</script>
+
+</body>
+</html>
