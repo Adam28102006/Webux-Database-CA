@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cars Inventory</title>
-<link rel="stylesheet" href="style.css" />
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cars Inventory</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -27,6 +28,7 @@
 
 <section>
     <h2>Car Inventory</h2>
+
     <table id="cars-table">
         <thead>
             <tr>
@@ -37,56 +39,10 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+
+        <tbody id="cars-body">
             <tr>
-                <td>1</td>
-                <td>Ford Mustang</td>
-                <td>55000</td>
-                <td>Ford</td>
-                <td>
-                    <button onclick="alert('Update 1')">Update</button>
-                    <button onclick="alert('Delete 1')">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Toyota Corolla</td>
-                <td>22000</td>
-                <td>Toyota</td>
-                <td>
-                    <button onclick="alert('Update 2')">Update</button>
-                    <button onclick="alert('Delete 2')">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>BMW X5</td>
-                <td>65000</td>
-                <td>BMW</td>
-                <td>
-                    <button onclick="alert('Update 3')">Update</button>
-                    <button onclick="alert('Delete 3')">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Range Rover Evoque</td>
-                <td>72000</td>
-                <td>Land Rover</td>
-                <td>
-                    <button onclick="alert('Update 4')">Update</button>
-                    <button onclick="alert('Delete 4')">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Kia Sportage</td>
-                <td>27000</td>
-                <td>Kia</td>
-                <td>
-                    <button onclick="alert('Update 5')">Update</button>
-                    <button onclick="alert('Delete 5')">Delete</button>
-                </td>
+                <td colspan="5">Loading cars...</td>
             </tr>
         </tbody>
     </table>
@@ -96,13 +52,7 @@
     <p>&copy; 2026 Car Inventory System</p>
 </footer>
 
-<script>
-    const supabaseUrl = 'https://gnhiwqpgpeoolmkkzrwo.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImduaGl3cXBncGVvb2xta2t6cndvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1Mzg4MTgsImV4cCI6MjA4NzExNDgxOH0.xYoMidYCqTVYbrOWCtzP24fnUQuDMy4G-juWhjWmwfQ';
-
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-</script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
