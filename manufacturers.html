@@ -1,1 +1,52 @@
-just adding the file now
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manufacturers</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Car Inventory System</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="parts.html">Parts</a></li>
+      <li><a href="manufacturers.html">Manufacturers</a></li>
+      <li><a href="addcar.html">Add Car</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>Manufacturers</h2>
+
+    <div style="margin-bottom: 15px;">
+      <input type="text" id="manufacturer-name" placeholder="Enter manufacturer name">
+      <button>Add Manufacturer</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Manufacturer Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="manufacturers-body">
+        <tr>
+          <td colspan="3">Manufacturers will appear here</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
