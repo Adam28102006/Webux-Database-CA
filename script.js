@@ -79,43 +79,67 @@ async function updateCar(id) {
         loadCars();
     }
 }
+let allManufacturers = [];
 
+function renderManufacturers(data) {
+  const body = document.getElementById('manufacturers-body');
+  if (!body) return;
+
+  body.innerHTML = '';
+
+  if (!data || data.length === 0) {
+    body.innerHTML = `<tr><td colspan="3">No manufacturers found</td></tr>`;
+    return;
+  }
+
+  data.forEach(m => {
+    const safeName = String(m.manufacturer_name).replace(/'/g, "\\'");
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td>${m.manufacturer_id}</td>
+      <td>${m.manufacturer_name}</td>
+      <td>
+        <button onclick="editManufacturer(${m.manufacturer_id}, '${safeName}')">Edit</button>
+        <button onclick="deleteManufacturer(${m.manufacturer_id})">Delete</button>
+      </td>
+    `;
+
+    body.appendChild(row);
+  });
+}
+
+function filterManufacturers() {
+  const searchInput = document.getElementById('search-manufacturer');
+  if (!searchInput) return;
+
+  const searchValue = searchInput.value.toLowerCase().trim();
+
+  const filtered = allManufacturers.filter(m =>
+    m.manufacturer_name.toLowerCase().includes(searchValue)
+  );
+
+  renderManufacturers(filtered);
+}
 async function loadManufacturers() {
-    const { data, error } = await client
-        .from('manufacturers')
-        .select('*')
-        .order('manufacturer_id', { ascending: true });
+  const { data, error } = await client
+    .from('manufacturers')
+    .select('*')
+    .order('manufacturer_id', { ascending: true });
 
-    const body = document.getElementById('manufacturers-body');
-    if (!body) return;
+  const body = document.getElementById('manufacturers-body');
+  if (!body) return;
 
-    body.innerHTML = '';
+  body.innerHTML = '';
 
-    if (error) {
-        console.error(error);
-        body.innerHTML = `<tr><td colspan="3">Error loading manufacturers</td></tr>`;
-        return;
-    }
+  if (error) {
+    console.error(error);
+    body.innerHTML = `<tr><td colspan="3">Error loading manufacturers</td></tr>`;
+    return;
+  }
 
-    if (!data || data.length === 0) {
-        body.innerHTML = `<tr><td colspan="3">No manufacturers found</td></tr>`;
-        return;
-    }
-
-    data.forEach(m => {
-        const safeName = String(m.manufacturer_name).replace(/'/g, "\\'");
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${m.manufacturer_id}</td>
-            <td>${m.manufacturer_name}</td>
-            <td>
-                <button onclick="editManufacturer(${m.manufacturer_id}, '${safeName}')">Edit</button>
-                <button onclick="deleteManufacturer(${m.manufacturer_id})">Delete</button>
-            </td>
-        `;
-        body.appendChild(row);
-    });
+  allManufacturers = data || [];
+  renderManufacturers(allManufacturers);
 }
 
 async function addManufacturer() {
