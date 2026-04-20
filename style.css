@@ -103,6 +103,8 @@ button:hover {
 }
 
 footer {
+    width: 100%;
+    box-sizing: border-box;
     background-color: #2f3e4f;
     color: white;
     text-align: center;
